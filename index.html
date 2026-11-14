@@ -56,6 +56,21 @@ html, body {
   height: 100%;
   object-fit: contain;
   display: block;
+
+  /* Soft feathered edges */
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    black 48%,
+    rgba(0,0,0,0.9) 65%,
+    transparent 100%
+  );
+
+  mask-image: radial-gradient(
+    ellipse at center,
+    black 48%,
+    rgba(0,0,0,0.9) 65%,
+    transparent 100%
+  );
 }
 
 /* MOTH — SOUND INTERACTION */
@@ -75,7 +90,20 @@ html, body {
 .moth:hover img {
   transform: scale(1.18);
 }
-
+.moth-caption {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  font-family: 'Nova Slim', sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #012EFD;
+  text-align: center;
+  pointer-events: none;
+  z-index: 20;
+}
 /* STORYTELLERS */
 
 .storytellers {
@@ -176,9 +204,13 @@ html, body {
 
   <div class="map-title">SOUND MAP</div>
 
-  <div class="flyer moth">
-    <img src="./moth1.gif" alt="Moth animation">
+<div class="flyer moth">
+  <img src="./moth1.gif" alt="Moth animation">
+
+  <div class="moth-caption">
+    Another Future for Bolzano, 1.10.2026, Bolzano Art Weeks.
   </div>
+</div>
 
   <div class="flyer storytellers">
     <img src="./Storytellers_Animasyon(1).gif"
