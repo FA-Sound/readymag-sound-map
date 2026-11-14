@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sound Map</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nova+Slim&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+#sound-map {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: #ffffff;
+  color: #012EFD;
+  font-family: 'Nova Slim', sans-serif;
+}
+
+.map-title {
+  position: absolute;
+  top: 30px;
+  left: 35px;
+  color: #012EFD;
+  font-size: 18px;
+  z-index: 20;
+}
+
+.flyer {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+
+.flyer img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* MOTH — SOUND INTERACTION */
+
+.moth {
+  top: 20%;
+  left: 12%;
+  animation: moth-flight 19s infinite ease-in-out alternate;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.moth img {
+  transition: transform 0.4s ease;
+}
+
+.moth:hover img {
+  transform: scale(1.18);
+}
+
+/* STORYTELLERS */
+
+.storytellers {
+  top: 50%;
+  left: 62%;
+  animation: storytellers-flight 23s infinite ease-in-out alternate;
+}
+
+/* FLUIDS */
+
+.fluids {
+  top: 65%;
+  left: 22%;
+  animation: fluids-flight 21s infinite ease-in-out alternate;
+}
+
+/* IRREGULAR FLYING PATHS */
+
+@keyframes moth-flight {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  20% {
+    transform: translate(130px, 80px) rotate(20deg);
+  }
+  45% {
+    transform: translate(240px, -30px) rotate(-15deg);
+  }
+  70% {
+    transform: translate(100px, 150px) rotate(30deg);
+  }
+  100% {
+    transform: translate(-30px, 60px) rotate(-20deg);
+  }
+}
+
+@keyframes storytellers-flight {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(-140px, -100px) rotate(-25deg);
+  }
+  50% {
+    transform: translate(-240px, 40px) rotate(15deg);
+  }
+  75% {
+    transform: translate(-70px, 130px) rotate(-20deg);
+  }
+  100% {
+    transform: translate(80px, -60px) rotate(25deg);
+  }
+}
+
+@keyframes fluids-flight {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(160px, -100px) rotate(25deg);
+  }
+  50% {
+    transform: translate(260px, 30px) rotate(-20deg);
+  }
+  75% {
+    transform: translate(100px, 150px) rotate(15deg);
+  }
+  100% {
+    transform: translate(-80px, -40px) rotate(-25deg);
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .flyer {
+    width: 110px;
+    height: 110px;
+  }
+
+  .map-title {
+    top: 20px;
+    left: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flyer {
+    animation: none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="sound-map">
+
+  <div class="map-title">SOUND MAP</div>
+
+  <div class="flyer moth">
+    <img src="./moth1.gif" alt="Moth animation">
+  </div>
+
+  <div class="flyer storytellers">
+    <img src="./Storytellers_Animasyon(1).gif"
+         alt="Storytellers animation">
+  </div>
+
+  <div class="flyer fluids">
+    <img src="./Fluids_Animasyon2.gif"
+         alt="Fluids animation">
+  </div>
+
+</div>
+
+<script>
+const moth = document.querySelector('.moth');
+
+const sound = new Audio('./moth.mp3');
+sound.preload = 'auto';
+
+moth.addEventListener('mouseenter', () => {
+  sound.currentTime = 0;
+  sound.play().catch(error => {
+    console.log('Audio playback error:', error);
+  });
+});
+
+moth.addEventListener('mouseleave', () => {
+  sound.pause();
+  sound.currentTime = 0;
+});
+</script>
+
+</body>
+</html>
